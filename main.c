@@ -14,7 +14,7 @@ signed int *contDecHoraMostrar, *contHoraMostrar;
 unsigned int interrupcionesRealizar = 6; //Se necesitan 10 interrupciones para
 //que transcurra un minuto
 unsigned int numeros[] = {63, 6, 91, 79, 102, 109, 125, 71, 127, 103};
-// 0  1   2   3   4    5    6    7   8    9
+                        // 0  1   2   3   4    5    6    7   8    9
 
 void ajustarReloj(void);
 void dameTemperatura(void);
@@ -29,7 +29,7 @@ void verificaAmPm(void);
 void convertirFormato(void);
 
 void __interrupt() desbordamiento(void) {
-    if (INTCONbits.TMR0IF) //¿Se desbordo el registro Timer 0?
+    if (INTCONbits.TMR0IF) //Â¿Se desbordo el registro Timer 0?
     {
         interrupcionesRealizar--;
         if (!interrupcionesRealizar) {
@@ -445,7 +445,7 @@ void main(void) {
     INTCONbits.GIE = 1; //Interrupciones Globales Activadas
 
     INTCONbits.TMR0IE = 1; //Interrupcion desbordamiento Timer 0
-    INTCONbits.TMR0IF = 0; //Inicializar la bandera de interrupción Timer 0
+    INTCONbits.TMR0IF = 0; //Inicializar la bandera de interrupciÃ³n Timer 0
 
     T0CON = 0b10000111; //Timer 0 encendido, 16 bits , Temporizador, Prescaler 1:256
 
