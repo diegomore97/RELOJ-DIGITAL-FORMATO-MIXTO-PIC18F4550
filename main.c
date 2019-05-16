@@ -209,7 +209,7 @@ void controlBotones(void) {
 
 void ajustarReloj(void) {
     T0CONbits.TMR0ON = 0;
-    __delay_ms(250);
+    __delay_ms(500);
     T0CONbits.TMR0ON = 1;
 }
 
