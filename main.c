@@ -14,7 +14,7 @@ signed int *contDecHoraMostrar, *contHoraMostrar;
 unsigned int interrupcionesRealizar = 6; //Se necesitan 10 interrupciones para
 //que transcurra un minuto
 unsigned int numeros[] = {63, 6, 91, 79, 102, 109, 125, 71, 127, 103};
-                        // 0  1   2   3   4    5    6    7   8    9
+// 0  1   2   3   4    5    6    7   8    9
 
 void ajustarReloj(void);
 void dameTemperatura(void);
@@ -39,6 +39,43 @@ void __interrupt() desbordamiento(void) {
 
         INTCONbits.TMR0IF = 0; //Regresando Bandera a 0 (Interrupcion por Timer 0)
         TMR0 = VALOR_TIMER0; //Inicializando Timer 0
+    }
+
+}
+
+void ajustarReloj(void) {
+    T0CONbits.TMR0ON = 0;
+    __delay_ms(125);
+    T0CONbits.TMR0ON = 1;
+}
+
+void controlContadores(void) {
+
+    if (((contDecHora == 1 && contHora == 2) || (contDecHora == 2 && contHora == 3)) && (contDecMin == 5 && contMin == 10))
+        ajustarReloj();
+
+    if (contDecHora == 2 && contHora == 3 && contDecMin == 5 && contMin == 10) {
+        contDecHora = 0;
+        contHora = 0;
+        contDecMin = 0;
+        contMin = 0;
+    }
+
+    else {
+
+        if (contMin == 10) {
+            contMin = 0;
+            contDecMin++;
+        }
+        if (contDecMin == 6) {
+            contDecMin = 0;
+            contHora++;
+        }
+        if (contHora == 10) {
+            contHora = 0;
+            contDecHora++;
+        }
+
     }
 
 }
@@ -101,34 +138,6 @@ void dameTemperatura(void) {
         }
 
         repeticiones--;
-
-    }
-
-}
-
-void controlContadores(void) {
-
-    if (contDecHora == 2 && contHora == 3 && contDecMin == 5 && contMin == 10) {
-        contDecHora = 0;
-        contHora = 0;
-        contDecMin = 0;
-        contMin = 0;
-        ajustarReloj();
-
-    } else {
-
-        if (contMin == 10) {
-            contMin = 0;
-            contDecMin++;
-        }
-        if (contDecMin == 6) {
-            contDecMin = 0;
-            contHora++;
-        }
-        if (contHora == 10) {
-            contHora = 0;
-            contDecHora++;
-        }
 
     }
 
@@ -205,12 +214,6 @@ void controlBotones(void) {
     }
 
 
-}
-
-void ajustarReloj(void) {
-    T0CONbits.TMR0ON = 0;
-    __delay_ms(500);
-    T0CONbits.TMR0ON = 1;
 }
 
 void parpadearDigitos(void) {
