@@ -59,9 +59,7 @@ void controlContadores(void) {
         contHora = 0;
         contDecMin = 0;
         contMin = 0;
-    }
-
-    else {
+    } else {
 
         if (contMin == 10) {
             contMin = 0;
@@ -103,6 +101,9 @@ void validaHoras(void) {
     } else if (contDecHora == 2 && *digitoActual == 4) {
         contDecHora = 0;
         *digitoActual = 0;
+    } else if (contDecHora == 2 && *digitoActual == -1) {
+        contDecHora = 1;
+        *digitoActual = 9;
     } else if (!contDecHora && *digitoActual == -1) {
         contDecHora = 2;
         *digitoActual = 3;
