@@ -307,132 +307,18 @@ void verificaAmPm(void) {
 }
 
 void convertirFormato(void) {
+
     unsigned int numeroEvaluar = (contDecHora * 10) + contHora;
-    switch (numeroEvaluar) {
-        case 0:
-            contDecHoraAux = 1;
-            contHoraAux = 2;
-            break;
 
-        case 1:
-            contDecHoraAux = 0;
-            contHoraAux = 1;
-            break;
+    if (numeroEvaluar > 12) {
+        numeroEvaluar -= 12;
+        contDecHoraAux = (numeroEvaluar / 10) % 10;
+        contHoraAux = numeroEvaluar % 10;
 
-        case 2:
-            contDecHoraAux = 0;
-            contHoraAux = 2;
-            break;
-
-        case 3:
-            contDecHoraAux = 0;
-            contHoraAux = 3;
-            break;
-
-        case 4:
-            contDecHoraAux = 0;
-            contHoraAux = 4;
-            break;
-
-        case 5:
-            contDecHoraAux = 0;
-            contHoraAux = 5;
-            break;
-
-        case 6:
-            contDecHoraAux = 0;
-            contHoraAux = 6;
-            break;
-
-        case 7:
-            contDecHoraAux = 0;
-            contHoraAux = 7;
-            break;
-
-        case 8:
-            contDecHoraAux = 0;
-            contHoraAux = 8;
-            break;
-
-        case 9:
-            contDecHoraAux = 0;
-            contHoraAux = 9;
-            break;
-
-        case 10:
-            contDecHoraAux = 1;
-            contHoraAux = 0;
-            break;
-
-        case 11:
-            contDecHoraAux = 1;
-            contHoraAux = 1;
-            break;
-
-        case 12:
-            contDecHoraAux = 1;
-            contHoraAux = 2;
-            break;
-
-        case 13:
-            contDecHoraAux = 0;
-            contHoraAux = 1;
-            break;
-
-        case 14:
-            contDecHoraAux = 0;
-            contHoraAux = 2;
-            break;
-
-        case 15:
-            contDecHoraAux = 0;
-            contHoraAux = 3;
-            break;
-
-        case 16:
-            contDecHoraAux = 0;
-            contHoraAux = 4;
-            break;
-
-        case 17:
-            contDecHoraAux = 0;
-            contHoraAux = 5;
-            break;
-
-        case 18:
-            contDecHoraAux = 0;
-            contHoraAux = 6;
-            break;
-
-        case 19:
-            contDecHoraAux = 0;
-            contHoraAux = 7;
-            break;
-
-        case 20:
-            contDecHoraAux = 0;
-            contHoraAux = 8;
-            break;
-
-        case 21:
-            contDecHoraAux = 0;
-            contHoraAux = 9;
-            break;
-
-        case 22:
-            contDecHoraAux = 1;
-            contHoraAux = 0;
-            break;
-
-        case 23:
-            contDecHoraAux = 1;
-            contHoraAux = 1;
-            break;
-
+        contDecHoraMostrar = &contDecHoraAux;
+        contHoraMostrar = &contHoraAux;
     }
 
-    contDecHoraMostrar = &contDecHoraAux;
-    contHoraMostrar = &contHoraAux;
 }
 
 void main(void) {
