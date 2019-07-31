@@ -14,7 +14,7 @@ signed int *contDecHoraMostrar, *contHoraMostrar;
 unsigned int interrupcionesRealizar = 6; //Se necesitan 10 interrupciones para
 //que transcurra un minuto
 unsigned int numeros[] = {63, 6, 91, 79, 102, 109, 125, 71, 127, 103};
-// 0  1   2   3   4    5    6    7   8    9
+                        // 0  1   2   3   4    5    6    7   8    9
 
 void ajustarReloj(void);
 void dameTemperatura(void);
@@ -314,6 +314,13 @@ void convertirFormato(void) {
         numeroEvaluar -= 12;
         contDecHoraAux = (numeroEvaluar / 10) % 10;
         contHoraAux = numeroEvaluar % 10;
+
+        contDecHoraMostrar = &contDecHoraAux;
+        contHoraMostrar = &contHoraAux;
+    } else if (!numeroEvaluar) {
+
+        contDecHoraAux = 1;
+        contHoraAux = 2;
 
         contDecHoraMostrar = &contDecHoraAux;
         contHoraMostrar = &contHoraAux;
